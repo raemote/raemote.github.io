@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>快速开始 — Raemote</title>
+<meta name="description" content="在跑应用的电脑上安装 Raemote，在手机上安装 App，扫一次二维码完成配对，从此在手机上访问自托管应用。附常用命令与故障排查。">
+<link rel="canonical" href="https://raemote.github.io/zh/get-started.html">
+<link rel="icon" href="../assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Raemote">
+<meta property="og:title" content="快速开始 — Raemote">
+<meta property="og:description" content="装一次、扫一次码，五分钟跑起来。">
+<meta property="og:url" content="https://raemote.github.io/zh/get-started.html">
+<meta property="og:image" content="https://raemote.github.io/assets/og.png">
+<meta name="theme-color" content="#197295" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="site">
+  <div class="bar wrap">
+    <a class="brand" href="./"><img src="../assets/logo.svg" alt="" width="26" height="26">Raemote</a>
+    <nav class="links" aria-label="主导航">
+      <a class="wide" href="index.html#features">功能</a>
+      <a class="wide" href="index.html#how">工作原理</a>
+      <a class="wide" href="index.html#trust">信任模型</a>
+      <a href="get-started.html" aria-current="page">快速开始</a>
+      <span class="lang">
+        <a href="../get-started.html" hreflang="en">EN</a>
+        <a href="./" aria-current="true" hreflang="zh">中文</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section>
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">快速开始</p>
+      <h1>把 Raemote 跑起来</h1>
+      <p class="lede">五分钟：在跑应用的电脑上装好服务端，在手机上装好 App，扫一次二维码完成配对。</p>
+
+      <div class="toc">
+        <h2>本页目录</h2>
+        <ol>
+          <li><a href="#before">开始之前</a></li>
+          <li><a href="#install">安装服务端</a></li>
+          <li><a href="#app">安装手机 App</a></li>
+          <li><a href="#pair">配对手机</a></li>
+          <li><a href="#use">开始使用</a></li>
+          <li><a href="#laptop">没有手机</a></li>
+          <li><a href="#operate">常用命令</a></li>
+          <li><a href="#trouble">出问题了</a></li>
+          <li><a href="#remove">卸载</a></li>
+        </ol>
+      </div>
+
+      <div class="step-block" id="before">
+        <h2><span class="n">1</span> 开始之前</h2>
+        <ul>
+          <li>一台 Mac（Apple Silicon 或 Intel）或 Linux 机器（x86_64、arm64，
+            树莓派也行），上面跑着你想在手机上访问的网页应用。</li>
+          <li>一台 iPhone。App 需要 <strong>iOS&nbsp;27 或更高版本</strong>。</li>
+          <li>这些应用要在 <code>localhost</code> 上提供纯 HTTP。暂时还不支持只提供
+            HTTPS 的应用。</li>
+        </ul>
+        <p>不会有任何东西暴露到公网：Raemote 把一切都留在你的机器上，只交给
+          你配对过的设备。</p>
+      </div>
+
+      <div class="step-block" id="install">
+        <h2><span class="n">2</span> 安装服务端</h2>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>复制</button>
+<pre><code>curl -fsSL https://github.com/raemote/raemote_cli/raw/main/install.sh | sh</code></pre>
+        </div>
+        <p>GitHub 不顺或者被墙时，用 Gitee 镜像：</p>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>复制</button>
+<pre><code>curl -fsSL https://gitee.com/pppkin/raemote_cli/raw/main/install.sh | sh</code></pre>
+        </div>
+        <p>安装脚本会把 <code>raemote</code> 和 <code>raemoted</code> 放进
+          <code>~/.local/bin</code>，注册并启动后台服务（macOS 用 launchd，Linux
+          用 systemd），最后打印你的配对链接。</p>
+        <details>
+          <summary>安装选项与 AI Agent</summary>
+          <p>常用参数：<code>--no-service</code>、<code>--bin-dir &lt;目录&gt;</code>、
+            <code>--proxy &lt;url&gt;</code>、<code>--source gitee|github</code>、
+            <code>--tag &lt;版本&gt;</code>、<code>--quiet</code>。</p>
+          <p>给 AI Agent 或脚本用时，加 <code>--json</code>：标准输出只有一个 JSON
+            对象（含节点 ID 和配对用的 <code>uri</code>），过程信息走标准错误，
+            失败时退出码非零：</p>
+<pre><code>curl -fsSL https://github.com/raemote/raemote_cli/raw/main/install.sh | sh -s -- --json</code></pre>
+          <p>完整约定见
+            <a href="https://github.com/raemote/raemote_cli/blob/main/docs/agent-install.md" rel="noopener">agent-install.md</a>。</p>
+        </details>
+        <p class="muted">想先读一遍？把 <code>install.sh</code> 下载下来再
+          <code>sh install.sh</code> 即可。</p>
+      </div>
+
+      <div class="step-block" id="app">
+        <h2><span class="n">3</span> 安装手机 App</h2>
+        <p><a class="btn badge" href="https://testflight.apple.com/join/3AQeWyUR" rel="noopener">
+          <img src="../assets/testflight_badge.svg" alt="可通过 TestFlight 获取" height="42">
+        </a></p>
+        <p>在 iPhone 上从 TestFlight 安装 <strong>Raemote</strong>（iOS&nbsp;27+），
+          然后打开。不用注册账号，也不用填任何信息。</p>
+        <div class="note">
+          <strong>第一次打开出现 Safari 的「非安全连接」提示页？</strong>
+          那是 Safari 对 Raemote 在 App 内部使用的 HTTP 回环地址发出的提示——
+          到你电脑的那一跳依然是端到端加密的。可以关掉它：
+          <em>设置 → App → Safari → 隐私与安全性 → 非安全连接警告</em>。
+        </div>
+      </div>
+
+      <div class="step-block" id="pair">
+        <h2><span class="n">4</span> 配对手机</h2>
+        <p>在运行服务端的那台电脑上：</p>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>复制</button>
+<pre><code>raemote pair</code></pre>
+        </div>
+        <p>它会打印一个 <code>raemote://</code> 链接和二维码。在 App 里点
+          <strong>+</strong> 扫描，或者用<strong>手动添加</strong>粘贴链接。
+          每台设备配对一次就够了。</p>
+        <p>这个链接是短期的（默认五分钟），在过期前可以配对多台设备。随时运行
+          <code>raemote pair</code> 就能打印一个新的。</p>
+        <details>
+          <summary>更长效的链接，或之后再添加设备</summary>
+          <p>如果需要一个长期有效的链接，在 <code>~/.raemote/config.toml</code>
+            里固定 token 和较长的有效期：</p>
+<pre><code>[bind]
+token = "…64 位十六进制…"
+token_ttl_secs = 3153600000</code></pre>
+          <p>然后再运行一次 <code>raemote pair</code>。请把这个链接当作密钥保管：
+            拿到它的人就能配对。也可以完全绕开服务端——在已配对的设备上用
+            <strong>… → 邀请设备…</strong> 生成一次性邀请码。</p>
+        </details>
+      </div>
+
+      <div class="step-block" id="use">
+        <h2><span class="n">5</span> 开始使用</h2>
+        <ul>
+          <li>已配对的服务端会出现在 App 里，点进去就能看到 <code>raemoted</code>
+            发现的应用。</li>
+          <li>点应用就在 Safari 里打开。每个应用都有自己的源，登录状态和站点
+            数据都会保留。</li>
+          <li>可以再打开一个应用，两个都会继续运行——<strong>最近</strong>那一行
+            可以瞬间切换，页面状态原样保留。</li>
+          <li>回到 App 时列表会自动刷新；想立刻重新扫描就用
+            <strong>… → 刷新应用</strong>。</li>
+        </ul>
+        <p>某个应用一直不出现，就手动固定：</p>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>复制</button>
+<pre><code>raemote apps add jellyfin 8096
+raemote apps list</code></pre>
+        </div>
+      </div>
+
+      <div class="step-block" id="laptop">
+        <h2><span class="n">6</span> 没有手机</h2>
+        <p>给这台电脑配对，直接在桌面浏览器里访问同样的应用：</p>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>复制</button>
+<pre><code>raemote connect '&lt;来自 raemote pair 的链接&gt;'   # 配对并打开
+raemote connect                              # 打开上次用的服务端</code></pre>
+        </div>
+        <p>应用列表跑在 <code>127.0.0.1:7788</code>（用 <code>--port</code> 改端口），
+          每个应用还会分到自己的回环端口，所以 URL 和 Cookie 的表现与在服务端
+          一致。加 <code>--no-open</code> 可以不自动打开浏览器。</p>
+      </div>
+
+      <div class="step-block" id="operate">
+        <h2><span class="n">7</span> 常用命令</h2>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>命令</th><th>作用</th></tr></thead>
+            <tbody>
+              <tr><td><code>raemote status</code></td><td>服务是否在跑、发现了几个应用</td></tr>
+              <tr><td><code>raemote doctor</code></td><td>体检守护进程、权限、配置、发现和中继</td></tr>
+              <tr><td><code>raemote discover</code></td><td>立刻重新扫描（加 <code>--verbose</code> 看每个被跳过的端口和原因）</td></tr>
+              <tr><td><code>raemote apps list</code></td><td>合并后的应用列表，含每条记录的来源</td></tr>
+              <tr><td><code>raemote apps hide &lt;名字&gt;</code></td><td>隐藏误识别的应用（<code>unhide</code> 恢复）</td></tr>
+              <tr><td><code>raemote devices list</code></td><td>已配对设备，含名称和节点 ID</td></tr>
+              <tr><td><code>raemote devices rename &lt;id&gt; "客厅"</code></td><td>给设备起个可读的名字</td></tr>
+              <tr><td><code>raemote devices revoke &lt;id&gt;</code></td><td>立刻断开某台设备</td></tr>
+              <tr><td><code>raemote config set name "Mac mini"</code></td><td>改服务端在已配对设备上显示的名字</td></tr>
+              <tr><td><code>raemote logs -n 50</code></td><td>最近日志（<code>--follow</code> 持续输出）</td></tr>
+              <tr><td><code>raemote restart</code></td><td>改完配置后重启服务</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="step-block" id="trouble">
+        <h2><span class="n">8</span> 出问题了</h2>
+        <p>先从这里开始：</p>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>复制</button>
+<pre><code>raemote doctor</code></pre>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>现象</th><th>处理</th></tr></thead>
+            <tbody>
+              <tr><td>应用没出现在列表里</td><td>先 <code>raemote discover --verbose</code> 看原因，再 <code>raemote apps add &lt;名字&gt; &lt;端口&gt;</code></td></tr>
+              <tr><td>应用打不开</td><td>确认它能在 <code>http://localhost:&lt;端口&gt;</code> 上响应；只提供 HTTPS 的应用暂不支持</td></tr>
+              <tr><td>手机提示未被授权</td><td>它被撤销过，或服务端身份变了——重新运行 <code>raemote pair</code> 再扫一次</td></tr>
+              <tr><td>doctor 说中继连不上</td><td>受限网络里设置出站代理：<code>raemote config set network.proxy http://host:port</code>，然后 <code>raemote restart</code></td></tr>
+              <tr><td>Safari 显示「非安全」页面</td><td>这是 Safari 对回环地址的提示，按上文在设置里关掉即可</td></tr>
+              <tr><td>改完配置没生效</td><td>多数设置用 <code>raemote reload</code>；网络或身份相关的改动要 <code>raemote restart</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>更多内容见
+          <a href="https://github.com/raemote/raemote_cli/blob/main/docs/troubleshooting.md" rel="noopener">troubleshooting.md</a>。</p>
+      </div>
+
+      <div class="step-block" id="remove">
+        <h2><span class="n">9</span> 卸载</h2>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>复制</button>
+<pre><code>curl -fsSL https://github.com/raemote/raemote_cli/raw/main/install.sh | sh -s -- --uninstall</code></pre>
+        </div>
+        <p>加上 <code>--purge</code> 会一并删除 <code>~/.raemote</code>——服务端身份
+          和已配对设备列表。如果只是想断开某台设备，用
+          <code>raemote devices</code> 撤销即可，不必卸载。</p>
+      </div>
+
+      <p class="muted">安全问题与隐私咨询：<a href="mailto:cool@lyuhj.top">cool@lyuhj.top</a> ·
+        <a href="https://github.com/raemote/raemote_cli/blob/main/SECURITY.md" rel="noopener">SECURITY.md</a> ·
+        <a href="https://github.com/raemote/raemote_cli/blob/main/PRIVACY.md" rel="noopener">PRIVACY.md</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h3>Raemote</h3>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="https://testflight.apple.com/join/3AQeWyUR" rel="noopener">iPhone App（TestFlight）</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli" rel="noopener">服务端与 CLI（GitHub）</a></li>
+          <li><a href="https://gitee.com/pppkin/raemote_cli" rel="noopener">服务端与 CLI（Gitee）</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>手机端</h3>
+        <ul>
+          <li><a href="https://github.com/raemote/raemote_connector_ios" rel="noopener">iOS 客户端（GitHub）</a></li>
+          <li><a href="https://gitee.com/pppkin/raemote_connector_ios" rel="noopener">iOS 客户端（Gitee）</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>文档</h3>
+        <ul>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/docs/how-it-works.md" rel="noopener">工作原理</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/docs/troubleshooting.md" rel="noopener">故障排查</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/docs/threat-model.md" rel="noopener">威胁模型</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>项目</h3>
+        <ul>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/SECURITY.md" rel="noopener">安全</a></li>
+          <li><a href="mailto:cool@lyuhj.top">cool@lyuhj.top</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="base">
+      <span>为那些自己搭服务器的人做的。</span>
+      <span>AGPL-3.0-or-later · <a href="../get-started.html">English</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+  btn.hidden = false;
+  btn.addEventListener('click', function () {
+    var code = btn.closest('.copy').querySelector('code');
+    navigator.clipboard.writeText(code.textContent).then(function () {
+      var was = btn.textContent;
+      btn.textContent = '已复制';
+      setTimeout(function () { btn.textContent = was; }, 1400);
+    });
+  });
+});
+</script>
+</body>
+</html>

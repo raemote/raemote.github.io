@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raemote — 让手机也能用你电脑上的自托管应用</title>
+<meta name="description" content="Raemote 自动发现你电脑上正在运行的自托管应用，并通过端到端加密的连接把它们带到手机上。装一次、扫一次码，无需账号、无需 VPN、无需端口转发。">
+<link rel="canonical" href="https://raemote.github.io/zh/">
+<link rel="icon" href="../assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Raemote">
+<meta property="og:title" content="Raemote — 让手机也能用你电脑上的自托管应用">
+<meta property="og:description" content="装一次、扫一次码，你私有的应用就出现在手机上。端到端加密，无需账号，无需端口转发。">
+<meta property="og:url" content="https://raemote.github.io/zh/">
+<meta property="og:image" content="https://raemote.github.io/assets/og.png">
+<meta name="theme-color" content="#197295" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="./"><img src="../assets/logo.svg" alt="" width="26" height="26">Raemote</a>
+    <nav class="links" aria-label="主导航">
+      <a class="wide" href="#features">功能</a>
+      <a class="wide" href="#how">工作原理</a>
+      <a class="wide" href="#trust">信任模型</a>
+      <a href="get-started.html">快速开始</a>
+      <span class="lang">
+        <a href="../" hreflang="en">EN</a>
+        <a href="./" aria-current="true" hreflang="zh">中文</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap">
+      <img class="mark" src="../assets/logo.svg" alt="" width="84" height="84">
+      <h1>你电脑上的自托管应用，现在手机上也能用。</h1>
+      <p class="lede">在电脑上装好 Raemote，用手机扫一次二维码。
+        Jellyfin、Home Assistant、仪表盘和开发服务器就都到了手机上——
+        端到端加密，不需要账号，不用 VPN，也不用做端口转发。</p>
+      <div class="actions">
+        <a class="btn primary" href="get-started.html">快速开始</a>
+        <a class="btn badge" href="https://testflight.apple.com/join/3AQeWyUR" rel="noopener">
+          <img src="../assets/testflight_badge.svg" alt="可通过 TestFlight 获取" height="42">
+        </a>
+        <a class="btn" href="https://github.com/raemote/raemote_cli" rel="noopener">在 GitHub 上 Star</a>
+      </div>
+      <ul class="pill-row">
+        <li class="pill">无需账号</li>
+        <li class="pill">无需端口转发</li>
+        <li class="pill">端到端加密</li>
+        <li class="pill">能直连就直连</li>
+        <li class="pill">开源，AGPL-3.0</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="start">
+    <div class="wrap">
+      <p class="eyebrow">三步搞定</p>
+      <h2>安装、扫码、完成</h2>
+      <ol class="steps">
+        <li>
+          <h3>装到电脑上</h3>
+          <p>macOS 或 Linux 上一条命令。它会装一个后台服务，自动发现你已经跑着的那些网页应用。</p>
+        </li>
+        <li>
+          <h3>扫一下二维码</h3>
+          <p>运行 <code>raemote pair</code>，用 Raemote App 扫一下。这个链接是短期的，在过期之前可以配对不止一台设备。</p>
+        </li>
+        <li>
+          <h3>打开应用</h3>
+          <p>你的应用会列出来。点开就在 Safari 里打开，登录状态和家里一模一样。</p>
+        </li>
+      </ol>
+      <div class="copy">
+        <button class="copybtn" type="button" data-copy hidden>复制</button>
+<pre><code>curl -fsSL https://github.com/raemote/raemote_cli/raw/main/install.sh | sh</code></pre>
+      </div>
+      <p class="muted">GitHub 不顺的时候用 Gitee 镜像：
+        <code>curl -fsSL https://gitee.com/pppkin/raemote_cli/raw/main/install.sh | sh</code></p>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <p class="eyebrow">功能</p>
+      <h2>Raemote 为你做的事</h2>
+      <ul class="grid">
+        <li class="card">
+          <span class="tag">发现</span>
+          <h3>它自己找应用</h3>
+          <p>Raemote 读取本机正在监听的端口列表——不扫端口、不用配置——并从页面标题里读出应用名字。新启动的应用会自动出现。</p>
+        </li>
+        <li class="card">
+          <span class="tag">手机端</span>
+          <h3>在真正的 Safari 里打开</h3>
+          <p>应用在系统浏览器视图里打开，每个应用都有自己稳定的源，因此登录状态、Cookie 和本地存储都能跨多次启动保留下来。</p>
+        </li>
+        <li class="card">
+          <span class="tag">手机端</span>
+          <h3>同时开多个应用</h3>
+          <p>打开的应用会作为后台标签页继续运行，切换是瞬时的，页面也保持在你离开时的样子。</p>
+        </li>
+        <li class="card">
+          <span class="tag">连接</span>
+          <h3>端到端加密，能直连就直连</h3>
+          <p>网络允许时，手机直接和你的电脑通信；不允许时，由公共中继转发——它转发的字节自己读不懂。</p>
+        </li>
+        <li class="card">
+          <span class="tag">连接</span>
+          <h3>在麻烦的网络里也能用</h3>
+          <p>支持配置出站 HTTP 代理，用于那些封掉常规路径的网络——酒店、校园、公司网络都算。</p>
+        </li>
+        <li class="card">
+          <span class="tag">管控</span>
+          <h3>谁进来由你决定</h3>
+          <p>查看已配对设备、给它们起名字、随时撤销，也可以在 App 或命令行里用一次性邀请码添加新设备。</p>
+        </li>
+        <li class="card">
+          <span class="tag">笔记本</span>
+          <h3>没有手机？用浏览器</h3>
+          <p><code>raemote connect</code> 会给这台电脑配对，并在 <code>127.0.0.1</code> 上提供同样的应用列表，走的是同一条加密隧道。调试和笔记本场景都很顺手。</p>
+        </li>
+        <li class="card">
+          <span class="tag">运维</span>
+          <h3>方便自查</h3>
+          <p><code>raemote doctor</code> 会体检守护进程、权限、配置、发现和中继；<code>raemote logs</code> 能看到发生了什么。服务由 launchd 或 systemd 托管。</p>
+        </li>
+        <li class="card">
+          <span class="tag">信任</span>
+          <h3>开源，AGPL-3.0</h3>
+          <p>Raemote 跑在你家里，握着你的私人服务的钥匙，所以服务端和 App 都公开、可审计。代码可以自己看，威胁模型也公开。</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <p class="eyebrow">工作原理</p>
+      <h2>两个组件，一条私有连接</h2>
+      <p class="lede">一个叫 <code>raemoted</code> 的小型服务端跑在放着这些应用的电脑上；手机上的 Raemote App 展示它发现了什么，并把它们打开。中间没有账号，也没有云服务。</p>
+      <figure>
+        <img src="../assets/diagram-how.svg" alt="示意图：手机与电脑上的 raemoted 之间建立端到端加密连接——能直连就直连，否则经过读不懂内容的公共中继；raemoted 再把请求反向代理到本机的各个网页应用。" width="960" height="400" loading="lazy">
+        <figcaption>网络允许就直连，不允许就走中继。</figcaption>
+      </figure>
+      <details>
+        <summary>技术细节</summary>
+        <p>连接由 <a href="https://www.iroh.computer/" rel="noopener">iroh</a> over QUIC
+        提供：两端互相发现并尝试直连，只有直连不可用时才动用公共中继。两种情况下都是端到端加密。</p>
+        <p>其上跑两套应用协议：<code>raemote/bind/0</code> 只负责用短期 token
+        完成配对；<code>raemote/0</code> 提供一小套 HTTP 接口
+        （<code>/_hub/catalog</code>、<code>/_hub/info</code>、
+        <code>/_hub/devices</code>、<code>/_hub/discover</code>），并把
+        <code>/app/&lt;名字&gt;/…</code> 反向代理到应用真实地址。</p>
+        <p>在手机这一侧，每个应用有自己的本地回环源和一个每次启动都会变的密钥，
+        手机上别的 App 也碰不到它。请求全程流式转发——请求体、上传、服务端推送
+        和 WebSocket 都原样通过。</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="trust">
+    <div class="wrap">
+      <p class="eyebrow">信任模型</p>
+      <h2>只有你配对过的设备能进来</h2>
+      <p class="lede">配对只做一次。之后手机凭它的加密身份被识别——没有账号要登录，也没有密钥要保管。</p>
+      <figure>
+        <img src="../assets/diagram-trust.svg" alt="示意图：配对二维码里包含服务端身份和一个短期 token；手机出示一次 token，服务端把手机身份记录到磁盘；此后凭身份识别，随时可以撤销。" width="960" height="250" loading="lazy">
+        <figcaption>二维码只是一次性的引导，不是长期密钥。</figcaption>
+      </figure>
+      <ul class="notlist yeslist">
+        <li>已配对身份保存在服务端；手机丢了，一条命令就能撤销。</li>
+        <li>配对失败次数过多会锁定该 token；token 自己也会过期。</li>
+        <li>不会向公网暴露任何东西——只有配对过的设备能访问这些应用。</li>
+        <li>服务端做的每一件事都写在公开的<a href="https://github.com/raemote/raemote_cli/blob/main/docs/threat-model.md" rel="noopener">威胁模型</a>里。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="laptop">
+    <div class="wrap">
+      <p class="eyebrow">没有手机也能试</p>
+      <h2>在笔记本浏览器里逛一逛</h2>
+      <p>同一条隧道，从这台电脑上的浏览器访问：</p>
+      <div class="copy">
+        <button class="copybtn" type="button" data-copy hidden>复制</button>
+<pre><code>raemote connect              # 打开上次用的服务端
+raemote connect '&lt;来自 raemote pair 的链接&gt;'</code></pre>
+      </div>
+      <p class="muted">应用列表跑在 <code>127.0.0.1:7788</code>，每个应用还会分到一个
+        自己的回环端口，所以应用的表现和在服务端完全一致。</p>
+    </div>
+  </section>
+
+  <section id="honest">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">先把话说清楚</p>
+      <h2>Raemote 不会做的事</h2>
+      <ul class="notlist">
+        <li>不会把你的应用暴露到公网上。</li>
+        <li>不会替代应用自己的登录——每个应用你还是要自己登录。</li>
+        <li>保护不了一台已经被攻破的手机。</li>
+        <li>它不是 VPN、不是远程桌面，也不是通用网络网关。</li>
+        <li>暂时还不支持只提供 HTTPS 的应用。</li>
+      </ul>
+      <p style="margin-top:20px"><a class="btn" href="get-started.html">看安装指南</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h3>Raemote</h3>
+        <ul>
+          <li><a href="get-started.html">快速开始</a></li>
+          <li><a href="https://testflight.apple.com/join/3AQeWyUR" rel="noopener">iPhone App（TestFlight）</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli" rel="noopener">服务端与 CLI（GitHub）</a></li>
+          <li><a href="https://gitee.com/pppkin/raemote_cli" rel="noopener">服务端与 CLI（Gitee）</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>手机端</h3>
+        <ul>
+          <li><a href="https://github.com/raemote/raemote_connector_ios" rel="noopener">iOS 客户端（GitHub）</a></li>
+          <li><a href="https://gitee.com/pppkin/raemote_connector_ios" rel="noopener">iOS 客户端（Gitee）</a></li>
+          <li><a href="https://crates.io/crates/raemote" rel="noopener">crate：raemote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>文档</h3>
+        <ul>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/docs/how-it-works.md" rel="noopener">工作原理</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/docs/troubleshooting.md" rel="noopener">故障排查</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/docs/threat-model.md" rel="noopener">威胁模型</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/docs/agent-install.md" rel="noopener">用 AI Agent 安装</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>项目</h3>
+        <ul>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/SECURITY.md" rel="noopener">安全</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/PRIVACY.md" rel="noopener">隐私</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/LICENSE" rel="noopener">许可证（AGPL-3.0）</a></li>
+          <li><a href="mailto:cool@lyuhj.top">cool@lyuhj.top</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="base">
+      <span>为那些自己搭服务器的人做的。</span>
+      <span>AGPL-3.0-or-later · <a href="../">English</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// 渐进增强：只有在支持脚本时，复制按钮才会出现。
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+  btn.hidden = false;
+  btn.addEventListener('click', function () {
+    var code = btn.closest('.copy').querySelector('code');
+    navigator.clipboard.writeText(code.textContent).then(function () {
+      var was = btn.textContent;
+      btn.textContent = '已复制';
+      setTimeout(function () { btn.textContent = was; }, 1400);
+    });
+  });
+});
+</script>
+</body>
+</html>

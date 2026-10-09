@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 250" width="960" height="250" role="img" aria-labelledby="trustTitle trustDesc">
+  <title id="trustTitle">How pairing establishes trust</title>
+  <desc id="trustDesc">The pairing QR carries the server's identity and a short-lived token. The phone presents the token once; the server checks it and stores the phone's identity on disk. After that, the phone is recognised by its identity and the token is never needed again — and any device can be revoked at any time.</desc>
+  <defs>
+    <marker id="b-light" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8b95a1"/>
+    </marker>
+    <marker id="b-dark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7d8894"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+    .box { fill: #ffffff; stroke: #c9d0d9; stroke-width: 1.5; }
+    .n { fill: #197295; font-size: 13px; font-weight: 700; }
+    .t { fill: #171a1f; font-size: 14px; font-weight: 650; }
+    .s { fill: #4d5560; font-size: 12px; }
+    .step { stroke: #8b95a1; stroke-width: 2; fill: none; marker-end: url(#b-light); }
+    @media (prefers-color-scheme: dark) {
+      .box { fill: #161b22; stroke: #303a45; }
+      .n { fill: #35c3e8; }
+      .t { fill: #e8ecf1; }
+      .s { fill: #b3bcc7; }
+      .step { stroke: #7d8894; marker-end: url(#b-dark); }
+    }
+  </style>
+
+  <path class="step" d="M216 108 L 250 108"/>
+  <path class="step" d="M456 108 L 490 108"/>
+  <path class="step" d="M696 108 L 730 108"/>
+
+  <rect class="box" x="16" y="34" width="200" height="148" rx="14"/>
+  <text class="n" x="36" y="62">1</text>
+  <text class="t" x="36" y="88">Server prints a link</text>
+  <text class="s" x="36" y="112">raemote pair</text>
+  <text class="s" x="36" y="134">a QR with its identity</text>
+  <text class="s" x="36" y="154">+ a short-lived token</text>
+
+  <rect class="box" x="256" y="34" width="200" height="148" rx="14"/>
+  <text class="n" x="276" y="62">2</text>
+  <text class="t" x="276" y="88">You scan it once</text>
+  <text class="s" x="276" y="112">the phone presents</text>
+  <text class="s" x="276" y="134">the token over an</text>
+  <text class="s" x="276" y="154">encrypted channel</text>
+
+  <rect class="box" x="496" y="34" width="200" height="148" rx="14"/>
+  <text class="n" x="516" y="62">3</text>
+  <text class="t" x="516" y="88">Server checks it</text>
+  <text class="s" x="516" y="112">valid + unexpired →</text>
+  <text class="s" x="516" y="134">stores the phone's</text>
+  <text class="s" x="516" y="154">identity on disk</text>
+
+  <rect class="box" x="736" y="34" width="208" height="148" rx="14"/>
+  <text class="n" x="756" y="62">4</text>
+  <text class="t" x="756" y="88">Recognised after that</text>
+  <text class="s" x="756" y="112">by identity alone —</text>
+  <text class="s" x="756" y="134">no token, no login,</text>
+  <text class="s" x="756" y="154">and revoke any time</text>
+
+  <text class="s" x="16" y="216">Knowing the server's identity is not enough to get in — only a device you paired is accepted.</text>
+  <text class="s" x="16" y="236">Revoke one with: raemote devices revoke &lt;node-id&gt;</text>
+</svg>

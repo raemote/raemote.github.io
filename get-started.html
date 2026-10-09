@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get started — Raemote</title>
+<meta name="description" content="Install Raemote on your computer, install the iPhone app, pair the two with a QR code, and reach your self-hosted apps from your phone. Includes troubleshooting and day-to-day commands.">
+<link rel="canonical" href="https://raemote.github.io/get-started.html">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Raemote">
+<meta property="og:title" content="Get started — Raemote">
+<meta property="og:description" content="Install, scan, done. A five-minute setup guide for Raemote.">
+<meta property="og:url" content="https://raemote.github.io/get-started.html">
+<meta property="og:image" content="https://raemote.github.io/assets/og.png">
+<meta name="theme-color" content="#197295" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="bar wrap">
+    <a class="brand" href="./"><img src="assets/logo.svg" alt="" width="26" height="26">Raemote</a>
+    <nav class="links" aria-label="Main">
+      <a class="wide" href="index.html#features">Features</a>
+      <a class="wide" href="index.html#how">How it works</a>
+      <a class="wide" href="index.html#trust">Trust</a>
+      <a href="get-started.html" aria-current="page">Get started</a>
+      <span class="lang">
+        <a href="./" hreflang="en" aria-current="true">EN</a>
+        <a href="zh/get-started.html" hreflang="zh">中文</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section>
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">Quick start</p>
+      <h1>Get Raemote running</h1>
+      <p class="lede">Five minutes: install the server on the computer that runs your
+        apps, install the app on your phone, scan one QR code.</p>
+
+      <div class="toc">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#before">Before you start</a></li>
+          <li><a href="#install">Install the server</a></li>
+          <li><a href="#app">Install the phone app</a></li>
+          <li><a href="#pair">Pair your phone</a></li>
+          <li><a href="#use">Use it</a></li>
+          <li><a href="#laptop">No phone handy</a></li>
+          <li><a href="#operate">Day-to-day commands</a></li>
+          <li><a href="#trouble">If something looks wrong</a></li>
+          <li><a href="#remove">Remove it</a></li>
+        </ol>
+      </div>
+
+      <div class="step-block" id="before">
+        <h2><span class="n">1</span> Before you start</h2>
+        <ul>
+          <li>A Mac (Apple Silicon or Intel) or a Linux machine (x86_64 or arm64 —
+            a Raspberry Pi is fine) that runs the web apps you want to reach.</li>
+          <li>An iPhone. The app targets <strong>iOS&nbsp;27 or later</strong>.</li>
+          <li>The apps must speak plain HTTP on <code>localhost</code>. HTTPS-only apps
+            are not reachable yet.</li>
+        </ul>
+        <p>Nothing is exposed to the internet: Raemote keeps everything on your
+          machine and hands it only to devices you paired.</p>
+      </div>
+
+      <div class="step-block" id="install">
+        <h2><span class="n">2</span> Install the server</h2>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>Copy</button>
+<pre><code>curl -fsSL https://github.com/raemote/raemote_cli/raw/main/install.sh | sh</code></pre>
+        </div>
+        <p>On a network where GitHub is slow or blocked, use the Gitee mirror:</p>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>Copy</button>
+<pre><code>curl -fsSL https://gitee.com/pppkin/raemote_cli/raw/main/install.sh | sh</code></pre>
+        </div>
+        <p>The installer puts <code>raemote</code> and <code>raemoted</code> in
+          <code>~/.local/bin</code>, installs a background service (launchd on macOS,
+          systemd on Linux), starts it, and prints your pairing link.</p>
+        <details>
+          <summary>Installer options and AI agents</summary>
+          <p>Useful flags: <code>--no-service</code>, <code>--bin-dir &lt;dir&gt;</code>,
+            <code>--proxy &lt;url&gt;</code>, <code>--source gitee|github</code>,
+            <code>--tag &lt;tag&gt;</code>, <code>--quiet</code>.</p>
+          <p>For an AI agent or a script, <code>--json</code> writes one JSON object to
+            stdout (including the node id and the pairing <code>uri</code>) and all
+            progress to stderr, and exits non-zero on failure:</p>
+<pre><code>curl -fsSL https://github.com/raemote/raemote_cli/raw/main/install.sh | sh -s -- --json</code></pre>
+          <p>Full contract: <a href="https://github.com/raemote/raemote_cli/blob/main/docs/agent-install.md" rel="noopener">agent-install.md</a>.</p>
+        </details>
+        <p class="muted">Prefer to read it first? Download <code>install.sh</code>, then
+          run <code>sh install.sh</code>.</p>
+      </div>
+
+      <div class="step-block" id="app">
+        <h2><span class="n">3</span> Install the phone app</h2>
+        <p><a class="btn badge" href="https://testflight.apple.com/join/3AQeWyUR" rel="noopener">
+          <img src="assets/testflight_badge.svg" alt="Available on TestFlight" height="42">
+        </a></p>
+        <p>Install <strong>Raemote</strong> from TestFlight on your iPhone
+          (iOS&nbsp;27+), then open it. There is no account to create and nothing to
+          sign up for.</p>
+        <div class="note">
+          <strong>First launch shows a Safari “Not Secure Connection” page?</strong>
+          That is Safari's own warning for the plain-HTTP loopback address Raemote
+          uses inside the app — the hop to your computer is still end-to-end
+          encrypted. Turn it off in
+          <em>Settings → Apps → Safari → Privacy &amp; Security → Not Secure Connection
+          Warning</em>.
+        </div>
+      </div>
+
+      <div class="step-block" id="pair">
+        <h2><span class="n">4</span> Pair your phone</h2>
+        <p>On the computer that runs the server:</p>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>Copy</button>
+<pre><code>raemote pair</code></pre>
+        </div>
+        <p>It prints a <code>raemote://</code> link and a QR code. In the app, tap
+          <strong>+</strong> and scan it — or paste the link with
+          <strong>Manual Setup</strong>. You do this once per device.</p>
+        <p>The link is short-lived (five minutes by default) and can pair more than one
+          device until it expires. Print a fresh one any time with
+          <code>raemote pair</code>.</p>
+        <details>
+          <summary>A longer-lived link, or pairing another device later</summary>
+          <p>For a link that stays valid, pin a token and a long TTL in
+            <code>~/.raemote/config.toml</code>:</p>
+<pre><code>[bind]
+token = "…64 hex characters…"
+token_ttl_secs = 3153600000</code></pre>
+          <p>then run <code>raemote pair</code> again. Treat that link as a secret:
+            anyone holding it can pair. Or skip the server entirely — from an already
+            paired device use <strong>… → Invite Device…</strong> in the app for a
+            one-time code.</p>
+        </details>
+      </div>
+
+      <div class="step-block" id="use">
+        <h2><span class="n">5</span> Use it</h2>
+        <ul>
+          <li>Your paired servers appear in the app; open one to see the apps
+            <code>raemoted</code> found.</li>
+          <li>Tap an app to open it in Safari. Each app keeps its own origin, so
+            logins and site data survive.</li>
+          <li>Open a second app and both stay running — the
+            <strong>Recent</strong> row switches between them instantly, with page
+            state intact.</li>
+          <li>The app refreshes itself when you return to it; tap
+            <strong>… → Refresh Apps</strong> to scan again right away.</li>
+        </ul>
+        <p>If an app never shows up, pin it by hand:</p>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>Copy</button>
+<pre><code>raemote apps add jellyfin 8096
+raemote apps list</code></pre>
+        </div>
+      </div>
+
+      <div class="step-block" id="laptop">
+        <h2><span class="n">6</span> No phone handy</h2>
+        <p>Pair this machine and browse the same apps from your desktop browser:</p>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>Copy</button>
+<pre><code>raemote connect '&lt;link from raemote pair&gt;'   # pair and open
+raemote connect                              # reopen the last server</code></pre>
+        </div>
+        <p>The app list is served on <code>127.0.0.1:7788</code> (move it with
+          <code>--port</code>), and every app gets its own loopback port so its URLs
+          and cookies behave exactly as they do on the server. <code>--no-open</code>
+          skips launching the browser.</p>
+      </div>
+
+      <div class="step-block" id="operate">
+        <h2><span class="n">7</span> Day-to-day commands</h2>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td><code>raemote status</code></td><td>is the service running, and how many apps were found</td></tr>
+              <tr><td><code>raemote doctor</code></td><td>health check: daemon, permissions, config, discovery, relay</td></tr>
+              <tr><td><code>raemote discover</code></td><td>scan for apps right now (add <code>--verbose</code> to see what was skipped and why)</td></tr>
+              <tr><td><code>raemote apps list</code></td><td>the merged app list, with where each entry came from</td></tr>
+              <tr><td><code>raemote apps hide &lt;name&gt;</code></td><td>drop a false positive (<code>unhide</code> restores it)</td></tr>
+              <tr><td><code>raemote devices list</code></td><td>paired devices, with names and node ids</td></tr>
+              <tr><td><code>raemote devices rename &lt;id&gt; "Living Room"</code></td><td>give a device a readable name</td></tr>
+              <tr><td><code>raemote devices revoke &lt;id&gt;</code></td><td>cut a device off immediately</td></tr>
+              <tr><td><code>raemote config set name "Mac mini"</code></td><td>rename the server as paired devices see it</td></tr>
+              <tr><td><code>raemote logs -n 50</code></td><td>recent activity (<code>--follow</code> to stream)</td></tr>
+              <tr><td><code>raemote restart</code></td><td>restart the service after a config change</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="step-block" id="trouble">
+        <h2><span class="n">8</span> If something looks wrong</h2>
+        <p>Start here:</p>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>Copy</button>
+<pre><code>raemote doctor</code></pre>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Symptom</th><th>Fix</th></tr></thead>
+            <tbody>
+              <tr><td>An app isn't listed</td><td><code>raemote discover --verbose</code> to see why it was skipped; then <code>raemote apps add &lt;name&gt; &lt;port&gt;</code></td></tr>
+              <tr><td>The app can't be reached</td><td>check it answers <code>http://localhost:&lt;port&gt;</code>; HTTPS-only apps are not supported yet</td></tr>
+              <tr><td>The phone says it is not authorized</td><td>it was revoked, or the server's identity changed — run <code>raemote pair</code> again and re-scan</td></tr>
+              <tr><td>Doctor reports the relay unreachable</td><td>on a restricted network, set an outbound proxy: <code>raemote config set network.proxy http://host:port</code> then <code>raemote restart</code></td></tr>
+              <tr><td>Safari shows a “Not Secure” page</td><td>that is Safari's loopback warning; switch it off in Settings as noted above</td></tr>
+              <tr><td>Nothing works after editing config</td><td><code>raemote reload</code> for most settings, <code>raemote restart</code> for network or identity changes</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>More in
+          <a href="https://github.com/raemote/raemote_cli/blob/main/docs/troubleshooting.md" rel="noopener">troubleshooting.md</a>.</p>
+      </div>
+
+      <div class="step-block" id="remove">
+        <h2><span class="n">9</span> Remove it</h2>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>Copy</button>
+<pre><code>curl -fsSL https://github.com/raemote/raemote_cli/raw/main/install.sh | sh -s -- --uninstall</code></pre>
+        </div>
+        <p>Add <code>--purge</code> to also delete <code>~/.raemote</code> — the server
+          identity and the list of paired devices. Revoking a device from
+          <code>raemote devices</code> is enough to cut off access without
+          uninstalling anything.</p>
+      </div>
+
+      <p class="muted">Security reports and privacy questions:
+        <a href="mailto:cool@lyuhj.top">cool@lyuhj.top</a> ·
+        <a href="https://github.com/raemote/raemote_cli/blob/main/SECURITY.md" rel="noopener">SECURITY.md</a> ·
+        <a href="https://github.com/raemote/raemote_cli/blob/main/PRIVACY.md" rel="noopener">PRIVACY.md</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h3>Raemote</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="https://testflight.apple.com/join/3AQeWyUR" rel="noopener">iPhone app (TestFlight)</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli" rel="noopener">Server &amp; CLI (GitHub)</a></li>
+          <li><a href="https://gitee.com/pppkin/raemote_cli" rel="noopener">Server &amp; CLI (Gitee)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Phone app</h3>
+        <ul>
+          <li><a href="https://github.com/raemote/raemote_connector_ios" rel="noopener">iOS client (GitHub)</a></li>
+          <li><a href="https://gitee.com/pppkin/raemote_connector_ios" rel="noopener">iOS client (Gitee)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Documentation</h3>
+        <ul>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/docs/how-it-works.md" rel="noopener">How it works</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/docs/troubleshooting.md" rel="noopener">Troubleshooting</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/docs/threat-model.md" rel="noopener">Threat model</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Project</h3>
+        <ul>
+          <li><a href="https://github.com/raemote/raemote_cli/blob/main/SECURITY.md" rel="noopener">Security</a></li>
+          <li><a href="mailto:cool@lyuhj.top">cool@lyuhj.top</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="base">
+      <span>Made for people who run their own servers.</span>
+      <span>AGPL-3.0-or-later · <a href="zh/get-started.html">中文</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+  btn.hidden = false;
+  btn.addEventListener('click', function () {
+    var code = btn.closest('.copy').querySelector('code');
+    navigator.clipboard.writeText(code.textContent).then(function () {
+      var was = btn.textContent;
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = was; }, 1400);
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -50,11 +50,12 @@ product, update the pages in the same commit:
 Screenshots and a short demo video are still missing; the pages are built to
 degrade gracefully without them.
 
-## Mirrors
+## Hosting
 
-- GitHub (hosted): <https://github.com/raemote/raemote.github.io>
-- Gitee (source mirror, for networks where GitHub is unreliable):
-  <https://gitee.com/pppkin/raemote_site>
+GitHub Pages, published from `main` (branch-based, no CI):
+<https://github.com/raemote/raemote.github.io>. The pages themselves load
+nothing from third parties, so they render on any network that can reach
+GitHub Pages.
 
 ## License
 

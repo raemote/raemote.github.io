@@ -62,15 +62,34 @@
 
       <div class="step-block" id="before">
         <h2><span class="n">1</span> Before you start</h2>
+        <p><strong>Will your app work? Check in ten seconds.</strong> On the computer that
+          runs it, open <code>http://localhost:&lt;port&gt;</code> in a browser — the same
+          address you'd use locally. If the page loads, Raemote can reach it too.</p>
+        <p>From a terminal, that's one line:</p>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>Copy</button>
+<pre><code>curl -I http://localhost:3000</code></pre>
+        </div>
+        <div class="note">
+          <strong>What that check is really doing</strong> is exactly what Raemote does when
+          it looks for apps: it asks each local port for its page and keeps the ones that
+          answer with a real web page. So if it loads for you, Raemote will find it.
+        </div>
+        <p>Raemote speaks plain HTTP — what a lot of self-hosted software serves out of
+          the box. An app you've already put behind HTTPS with a certificate won't be
+          reachable yet; that's the next thing we're building.</p>
+        <p>Nothing loading yet? That's fine — you can also add one by hand later with
+          <code>raemote apps add &lt;name&gt; &lt;port&gt;</code>.</p>
+        <h3 style="margin-top:20px">You'll also need</h3>
         <ul>
           <li>A Mac (Apple Silicon or Intel) or a Linux machine (x86_64 or arm64 —
             a Raspberry Pi is fine) that runs the web apps you want to reach.</li>
           <li>An iPhone. The app targets <strong>iOS&nbsp;27 or later</strong>.</li>
-          <li>The apps must speak plain HTTP on <code>localhost</code>. HTTPS-only apps
-            are not reachable yet.</li>
+          <li>Nothing exposed to the internet: Raemote keeps everything on your
+            machine and hands it only to devices you paired.</li>
         </ul>
-        <p>Nothing is exposed to the internet: Raemote keeps everything on your
-          machine and hands it only to devices you paired.</p>
+        <p class="muted">Don't have any apps running yet? A dev server is enough — start
+          anything that serves a web page and Raemote will show it.</p>
       </div>
 
       <div class="step-block" id="install">

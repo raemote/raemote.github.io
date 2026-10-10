@@ -61,15 +61,32 @@
 
       <div class="step-block" id="before">
         <h2><span class="n">1</span> 开始之前</h2>
+        <p><strong>你的应用能用吗？十秒钟就能确认。</strong>
+          在运行它的那台电脑上，用浏览器打开 <code>http://localhost:&lt;端口&gt;</code>——
+          就是你平时在本机用的那个地址。能打开，Raemote 就能连上。</p>
+        <p>在终端里就是一行：</p>
+        <div class="copy">
+          <button class="copybtn" type="button" data-copy hidden>复制</button>
+<pre><code>curl -I http://localhost:3000</code></pre>
+        </div>
+        <div class="note">
+          <strong>这个检查其实就是 Raemote 的工作方式</strong>：它去问每个本地端口要它的页面，
+          只保留那些真的返回网页的。所以你能打开，它就能找到。
+        </div>
+        <p>Raemote 使用普通 HTTP——不少自托管软件默认就是这样。
+          已经配好证书、只提供 HTTPS 的应用暂时还连不上，这是我们接下来要做的事。</p>
+        <p>现在还没有任何应用在跑？没关系，以后也可以手动添加：
+          <code>raemote apps add &lt;名字&gt; &lt;端口&gt;</code>。</p>
+        <h3 style="margin-top:20px">你还需要准备</h3>
         <ul>
           <li>一台 Mac（Apple Silicon 或 Intel）或 Linux 机器（x86_64、arm64，
             树莓派也行），上面跑着你想在手机上访问的网页应用。</li>
           <li>一台 iPhone。App 需要 <strong>iOS&nbsp;27 或更高版本</strong>。</li>
-          <li>这些应用要在 <code>localhost</code> 上提供纯 HTTP。暂时还不支持只提供
-            HTTPS 的应用。</li>
+          <li>不会有任何东西暴露到公网：Raemote 把一切都留在你的机器上，
+            只交给你配对过的设备。</li>
         </ul>
-        <p>不会有任何东西暴露到公网：Raemote 把一切都留在你的机器上，只交给
-          你配对过的设备。</p>
+        <p class="muted">现在一个应用都没跑？开发服务器就够了——
+          随便起一个能提供网页的东西，Raemote 就会把它列出来。</p>
       </div>
 
       <div class="step-block" id="install">

@@ -43,10 +43,13 @@
   <section class="hero">
     <div class="wrap">
       <img class="mark" src="assets/logo.svg" alt="" width="84" height="84">
-      <h1>Your self-hosted apps, on your phone.</h1>
+      <h1>The apps you already run, on your phone.</h1>
       <p class="lede">Install Raemote on your computer. Scan a QR code with your phone.
-        Jellyfin, Home Assistant, dashboards and dev servers are now on your phone —
-        end-to-end encrypted, with no account, no VPN and no port forwarding.</p>
+        The apps you already run — your media, your dashboards, your notes, your
+        projects — are right there on your phone, end-to-end encrypted, with nothing
+        exposed to the internet.</p>
+      <p class="muted">If you've ever set up a tunnel, a VPN or a reverse proxy just to
+        reach your own stuff from outside — this is the short way to do it.</p>
       <div class="actions">
         <a class="btn primary" href="get-started.html">Get started</a>
         <a class="btn badge" href="https://testflight.apple.com/join/3AQeWyUR" rel="noopener">
@@ -56,9 +59,9 @@
       </div>
       <ul class="pill-row">
         <li class="pill">No account</li>
-        <li class="pill">No port forwarding</li>
+        <li class="pill">Nothing exposed to the internet</li>
         <li class="pill">End-to-end encrypted</li>
-        <li class="pill">Direct when possible, relayed when needed</li>
+        <li class="pill">Works through a relay when needed</li>
         <li class="pill">Open source, AGPL-3.0</li>
       </ul>
     </div>
@@ -91,6 +94,94 @@
       </div>
       <p class="muted">Prefer the Gitee mirror on networks where GitHub is slow:
         <code>curl -fsSL https://gitee.com/pppkin/raemote_cli/raw/main/install.sh | sh</code></p>
+    </div>
+  </section>
+
+  <section id="uses">
+    <div class="wrap">
+      <p class="eyebrow">What people do with it</p>
+      <h2>Small things, from anywhere</h2>
+      <p class="lede">Raemote doesn't do one big thing. It puts the small, useful things
+        within reach — the checks you don't want to wait until you're home for.</p>
+      <ul class="grid">
+        <li class="card">
+          <span class="tag">At home</span>
+          <h3>Check on things</h3>
+          <p>Did the backup finish. Is the NAS up. What's the temperature. The camera,
+            from the sofa.</p>
+          <p class="muted">Jellyfin · Immich · Home Assistant · Uptime Kuma</p>
+        </li>
+        <li class="card">
+          <span class="tag">Work</span>
+          <h3>Get to work away from home</h3>
+          <p>Move a card on the board. Review a pull request. See if the build passed.
+            Open the admin panel.</p>
+          <p class="muted">Vikunja or Planka · Forgejo or Gitea · Woodpecker · Portainer</p>
+        </li>
+        <li class="card">
+          <span class="tag">Money</span>
+          <h3>Skip a monthly subscription</h3>
+          <p>The feed reader, the bookmarks, the document archive, the recipes, the budget —
+            yours, on your own machine.</p>
+          <p class="muted">Miniflux · Linkding · Paperless · Mealie · Actual</p>
+        </li>
+        <li class="card">
+          <span class="tag">Building</span>
+          <h3>Reach the thing you're making</h3>
+          <p>A dev server, a preview, a notebook, a database admin — running on the
+            machine in front of you, opened from your pocket.</p>
+          <p class="muted">Dev servers · Jupyter · code-server · Adminer</p>
+        </li>
+        <li class="card">
+          <span class="tag">Sharing</span>
+          <h3>Share with one person</h3>
+          <p>Pair a family member's device with its own identity, and take it away again
+            whenever you like.</p>
+          <p class="muted">One device each · revoke any time · no shared logins</p>
+        </li>
+        <li class="card">
+          <span class="tag">Laptop</span>
+          <h3>Or from a browser, no phone</h3>
+          <p><code>raemote connect</code> serves the same list on your own laptop — handy
+            for testing, or if the phone is charging.</p>
+          <p class="muted">One command, then your browser</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="simpler">
+    <div class="wrap">
+      <p class="eyebrow">Why it exists</p>
+      <h2>The long way, and the short way</h2>
+      <p class="lede">Reaching your own machines from outside the house usually means a
+        small networking project. There's nothing wrong with enjoying that project —
+        but it shouldn't be the price of checking your cameras.</p>
+      <ul class="grid">
+        <li class="card">
+          <span class="tag">The long way</span>
+          <h3>A stack to maintain</h3>
+          <ul>
+            <li>A public IP or a small VPS</li>
+            <li>A domain name and DNS</li>
+            <li>A certificate and a reverse-proxy config</li>
+            <li>A VPN client on your phone</li>
+            <li>Firewall rules, and keeping them patched</li>
+          </ul>
+        </li>
+        <li class="card">
+          <span class="tag">The short way</span>
+          <h3>One command, one QR code</h3>
+          <ul>
+            <li>Install Raemote on the machine you already have</li>
+            <li>Scan the QR code with the app</li>
+            <li>Tap an app — it opens, logged in</li>
+            <li>Nothing published to the internet</li>
+          </ul>
+          <p class="muted">If you already enjoy the long way, keep it. Raemote doesn't
+            need any of it, and doesn't get in the way.</p>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -210,8 +301,10 @@
         <li>Paired identities are stored on the server; a lost phone is revoked in one command.</li>
         <li>Failed pairing attempts lock the token out; tokens expire on their own.</li>
         <li>Nothing is published to the public internet — apps are reachable only from paired devices.</li>
-        <li>Everything the server does is documented in the public <a href="https://github.com/raemote/raemote_cli/blob/main/docs/threat-model.md" rel="noopener">threat model</a>.</li>
       </ul>
+      <p class="muted" style="margin-top:18px">Want the details? The
+        <a href="https://github.com/raemote/raemote_cli/blob/main/docs/threat-model.md" rel="noopener">threat model</a>
+        is public — what Raemote defends against, and what it deliberately doesn't.</p>
     </div>
   </section>
 
@@ -231,18 +324,57 @@ raemote connect '&lt;link from raemote pair&gt;'</code></pre>
     </div>
   </section>
 
+  <section id="words">
+    <div class="wrap">
+      <p class="eyebrow">Plain words</p>
+      <h2>Five words we'll use once</h2>
+      <dl class="terms">
+        <div>
+          <dt>App</dt>
+          <dd>Something with a web page — like the sites you open in a browser.</dd>
+        </div>
+        <div>
+          <dt>Server</dt>
+          <dd>The computer your apps run on. For Raemote, that's the machine Raemote is
+            installed on.</dd>
+        </div>
+        <div>
+          <dt>Port</dt>
+          <dd>The number a web app listens on, like <code>localhost:3000</code>.</dd>
+        </div>
+        <div>
+          <dt>Localhost</dt>
+          <dd>Your own computer, as seen from your own computer.</dd>
+        </div>
+        <div>
+          <dt>Relay</dt>
+          <dd>A public middleman that forwards your traffic when a direct line isn't
+            possible. It can't read what passes through.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
   <section id="honest">
     <div class="wrap wrap-narrow">
-      <p class="eyebrow">Honesty first</p>
-      <h2>What Raemote does not do</h2>
-      <ul class="notlist">
-        <li>It does not put your apps on the public internet.</li>
-        <li>It does not replace an app's own login — you still sign in to each app.</li>
-        <li>It does not protect a phone that is already compromised.</li>
-        <li>It is not a VPN, a remote desktop or a general network gateway.</li>
-        <li>It does not work for HTTPS-only apps yet.</li>
+      <p class="eyebrow">Straight answers</p>
+      <h2>Where Raemote stands today</h2>
+      <p><strong>Not yet — and on the way:</strong></p>
+      <ul class="notlist notlist-todo">
+        <li>Apps that only speak HTTPS (anything you've put behind a certificate) aren't
+          reachable yet. Plenty of self-hosted software serves plain HTTP out of the
+          box, and that works today.</li>
+        <li>No push notifications yet — you open the app to check.</li>
+        <li>Apps need to run on the machine Raemote is installed on.</li>
       </ul>
-      <p style="margin-top:20px"><a class="btn" href="get-started.html">Read the setup guide</a></p>
+      <p style="margin-top:20px"><strong>And never:</strong></p>
+      <ul class="notlist">
+        <li>It won't put your apps on the public internet.</li>
+        <li>It won't replace an app's own login — you still sign in to each app.</li>
+        <li>It won't protect a phone that's already compromised.</li>
+        <li>It isn't a file-transfer service or a remote desktop.</li>
+      </ul>
+      <p style="margin-top:20px"><a class="btn" href="get-started.html">See the setup steps</a></p>
     </div>
   </section>
 

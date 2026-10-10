@@ -311,6 +311,23 @@ nav.links a:hover { color: var(--ink); text-decoration: underline; }
   color: var(--teal);
   margin-bottom: 8px;
 }
+.card ul { margin: 10px 0 0; padding-left: 1.15em; color: var(--ink-soft); font-size: 0.94rem; }
+.card ul li { margin: 4px 0; }
+.card ul li::marker { color: var(--ink-faint); }
+
+/* "words we'll use once" */
+.terms {
+  display: grid;
+  gap: 10px 22px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin: 0;
+}
+.terms dt { font-weight: 650; }
+.terms dd {
+  margin: 2px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
 @media (prefers-color-scheme: dark) {
   .card .tag { color: var(--cyan); }
 }
@@ -422,20 +439,31 @@ tbody tr:last-child td { border-bottom: 0; }
 
 /* ---------- honest list ---------- */
 
+/* A hanging indent, not a grid: with `display: grid` an inline <a> or <code>
+   inside the item becomes its own grid item and wraps into the marker
+   column (a link renders one word per line). Absolute positioning keeps
+   every inline element flowing as normal text. */
 .notlist {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  gap: 10px;
 }
 .notlist li {
-  display: grid;
-  grid-template-columns: 1.4rem 1fr;
-  gap: 8px;
+  position: relative;
+  padding-left: 1.5rem;
   color: var(--ink-soft);
 }
-.notlist li::before { content: "✕"; color: #e5484d; font-weight: 700; }
+.notlist li + li { margin-top: 10px; }
+.notlist li::before {
+  content: "✕";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #e5484d;
+  font-weight: 700;
+}
+/* "not yet" — softer than the red ✕ of "never" */
+.notlist-todo li::before { content: "○"; color: var(--ink-faint); }
 .yeslist li::before { content: "✓"; color: var(--teal); }
 @media (prefers-color-scheme: dark) {
   .yeslist li::before { color: var(--cyan); }

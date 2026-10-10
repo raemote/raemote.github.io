@@ -42,10 +42,12 @@
   <section class="hero">
     <div class="wrap">
       <img class="mark" src="../assets/logo.svg" alt="" width="84" height="84">
-      <h1>你电脑上的自托管应用，现在手机上也能用。</h1>
+      <h1>你本来就在跑的应用，现在手机上也能用。</h1>
       <p class="lede">在电脑上装好 Raemote，用手机扫一次二维码。
-        Jellyfin、Home Assistant、仪表盘和开发服务器就都到了手机上——
-        端到端加密，不需要账号，不用 VPN，也不用做端口转发。</p>
+        你本来就在跑的那些东西——影音、控制台、笔记、项目——都到了手机上：
+        端到端加密，而且不会把任何东西暴露到公网上。</p>
+      <p class="muted">如果你以前为了在外面访问自己的东西，专门搭过隧道、VPN 或者反向代理——
+        这条路可以短很多。</p>
       <div class="actions">
         <a class="btn primary" href="get-started.html">快速开始</a>
         <a class="btn badge" href="https://testflight.apple.com/join/3AQeWyUR" rel="noopener">
@@ -55,9 +57,9 @@
       </div>
       <ul class="pill-row">
         <li class="pill">无需账号</li>
-        <li class="pill">无需端口转发</li>
+        <li class="pill">不暴露到公网</li>
         <li class="pill">端到端加密</li>
-        <li class="pill">能直连就直连</li>
+        <li class="pill">必要时走中继</li>
         <li class="pill">开源，AGPL-3.0</li>
       </ul>
     </div>
@@ -87,6 +89,90 @@
       </div>
       <p class="muted">GitHub 不顺的时候用 Gitee 镜像：
         <code>curl -fsSL https://gitee.com/pppkin/raemote_cli/raw/main/install.sh | sh</code></p>
+    </div>
+  </section>
+
+  <section id="uses">
+    <div class="wrap">
+      <p class="eyebrow">大家都用它做什么</p>
+      <h2>都是些小事，随时随地</h2>
+      <p class="lede">Raemote 不做一件大事，它只是把那些零碎又常用的事挪到你手边——
+        那些你不想等到回家才能做的事。</p>
+      <ul class="grid">
+        <li class="card">
+          <span class="tag">在家里</span>
+          <h3>看一眼家里的情况</h3>
+          <p>备份跑完了吗。NAS 还在线吗。家里多少度。坐在沙发上就能看摄像头。</p>
+          <p class="muted">Jellyfin · Immich · Home Assistant · Uptime Kuma</p>
+        </li>
+        <li class="card">
+          <span class="tag">工作</span>
+          <h3>出门在外也能干活</h3>
+          <p>在看板上挪一张卡。看一眼合并请求。看看这次构建过没过。打开管理后台。</p>
+          <p class="muted">Vikunja 或 Planka · Forgejo 或 Gitea · Woodpecker · Portainer</p>
+        </li>
+        <li class="card">
+          <span class="tag">省钱</span>
+          <h3>省掉一份月订阅</h3>
+          <p>RSS 订阅、书签、文档归档、菜谱、账本——都是你自己的，住在自己的机器上。</p>
+          <p class="muted">Miniflux · Linkding · Paperless · Mealie · Actual</p>
+        </li>
+        <li class="card">
+          <span class="tag">做东西</span>
+          <h3>随手打开正在做的那个</h3>
+          <p>开发服务器、预览环境、Notebook、数据库后台——就在你眼前这台机器上，
+            从口袋里点开就能用。</p>
+          <p class="muted">开发服务器 · Jupyter · code-server · Adminer</p>
+        </li>
+        <li class="card">
+          <span class="tag">分享</span>
+          <h3>和一个人共享</h3>
+          <p>给家人的设备单独配对，它有自己的身份；随时可以一键撤销。</p>
+          <p class="muted">一台设备一个身份 · 随时撤销 · 不共用账号</p>
+        </li>
+        <li class="card">
+          <span class="tag">笔记本</span>
+          <h3>不用手机也行</h3>
+          <p><code>raemote connect</code> 会在本机浏览器里提供同样的应用列表——
+            调试很方便，手机在充电时也能用。</p>
+          <p class="muted">一条命令，接着就是浏览器</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="simpler">
+    <div class="wrap">
+      <p class="eyebrow">它为什么存在</p>
+      <h2>费事的做法，和省事的做法</h2>
+      <p class="lede">想在外面访问自己的机器，通常意味着要做一个小型网络工程。
+        喜欢折腾这个过程的人很多，这没什么不好——只是你不该为了看一眼摄像头，
+        必须先完成这个工程。</p>
+      <ul class="grid">
+        <li class="card">
+          <span class="tag">费事的做法</span>
+          <h3>一整套要维护的东西</h3>
+          <ul>
+            <li>一台有公网 IP 的机器，或一台小 VPS</li>
+            <li>域名和 DNS 解析</li>
+            <li>证书和反向代理配置</li>
+            <li>手机上的 VPN 客户端</li>
+            <li>防火墙规则，以及一直打补丁</li>
+          </ul>
+        </li>
+        <li class="card">
+          <span class="tag">省事的做法</span>
+          <h3>一条命令，一次扫码</h3>
+          <ul>
+            <li>在已有的那台机器上装好 Raemote</li>
+            <li>用 App 扫一次二维码</li>
+            <li>点开一个应用——已经登录好了</li>
+            <li>不会有任何东西被公开到公网</li>
+          </ul>
+          <p class="muted">如果你本来就喜欢那套折腾方式，继续用就好。Raemote 不需要它们，
+            也不会碍事。</p>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -182,8 +268,9 @@
         <li>已配对身份保存在服务端；手机丢了，一条命令就能撤销。</li>
         <li>配对失败次数过多会锁定该 token；token 自己也会过期。</li>
         <li>不会向公网暴露任何东西——只有配对过的设备能访问这些应用。</li>
-        <li>服务端做的每一件事都写在公开的<a href="https://github.com/raemote/raemote_cli/blob/main/docs/threat-model.md" rel="noopener">威胁模型</a>里。</li>
       </ul>
+      <p class="muted" style="margin-top:18px">想看细节？<a href="https://github.com/raemote/raemote_cli/blob/main/docs/threat-model.md" rel="noopener">威胁模型</a>是公开的：
+        Raemote 防什么，以及刻意不防什么。</p>
     </div>
   </section>
 
@@ -202,18 +289,54 @@ raemote connect '&lt;来自 raemote pair 的链接&gt;'</code></pre>
     </div>
   </section>
 
+  <section id="words">
+    <div class="wrap">
+      <p class="eyebrow">说人话</p>
+      <h2>只出现一次的几个词</h2>
+      <dl class="terms">
+        <div>
+          <dt>应用</dt>
+          <dd>有网页的东西——就像你在浏览器里打开的那些网站。</dd>
+        </div>
+        <div>
+          <dt>服务端</dt>
+          <dd>跑着这些应用的那台电脑。对 Raemote 来说，就是装了 Raemote 的那台机器。</dd>
+        </div>
+        <div>
+          <dt>端口</dt>
+          <dd>一个应用监听的数字编号，比如 <code>localhost:3000</code>。</dd>
+        </div>
+        <div>
+          <dt>本机</dt>
+          <dd>你的电脑，在你的电脑上看向它自己时的样子。</dd>
+        </div>
+        <div>
+          <dt>中继</dt>
+          <dd>直连不通时的公开中转站。它帮你转发，但读不懂内容。</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
   <section id="honest">
     <div class="wrap wrap-narrow">
-      <p class="eyebrow">先把话说清楚</p>
-      <h2>Raemote 不会做的事</h2>
+      <p class="eyebrow">说在前面</p>
+      <h2>Raemote 今天到哪一步了</h2>
+      <p><strong>还没有、但正在做的：</strong></p>
+      <ul class="notlist notlist-todo">
+        <li>只提供 HTTPS 的应用（比如你已经配好证书的那些）暂时还连不上。
+          不少自托管软件默认就是普通 HTTP，这类现在就能用。</li>
+        <li>暂时还没有推送通知——需要打开 App 才会更新。</li>
+        <li>应用需要运行在装了 Raemote 的那台机器上。</li>
+      </ul>
+      <p style="margin-top:20px"><strong>永远不会做的：</strong></p>
       <ul class="notlist">
-        <li>不会把你的应用暴露到公网上。</li>
+        <li>不会把你的应用公开到公网上。</li>
         <li>不会替代应用自己的登录——每个应用你还是要自己登录。</li>
         <li>保护不了一台已经被攻破的手机。</li>
-        <li>它不是 VPN、不是远程桌面，也不是通用网络网关。</li>
-        <li>暂时还不支持只提供 HTTPS 的应用。</li>
+        <li>它不是文件传输工具，也不是远程桌面。</li>
       </ul>
-      <p style="margin-top:20px"><a class="btn" href="get-started.html">看安装指南</a></p>
+      <p style="margin-top:20px"><a class="btn" href="get-started.html">看看安装步骤</a></p>
     </div>
   </section>
 

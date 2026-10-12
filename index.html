@@ -229,7 +229,8 @@
           <h3>You decide who is in</h3>
           <p>List paired devices, give them readable names, revoke any of them
             instantly, and invite a new device with a one-time code — from the app
-            or the command line.</p>
+            or the command line. Every paired device can reach all your apps, or
+            only the ones you allow.</p>
         </li>
         <li class="card">
           <span class="tag">Laptop</span>
@@ -299,6 +300,8 @@
       </figure>
       <ul class="notlist yeslist">
         <li>Paired identities are stored on the server; a lost phone is revoked in one command.</li>
+        <li>Each paired device can be limited to only the apps you allow; an invitation can only
+          narrow the sender's own access, never widen it.</li>
         <li>Failed pairing attempts lock the token out; tokens expire on their own.</li>
         <li>Nothing is published to the public internet — apps are reachable only from paired devices.</li>
       </ul>

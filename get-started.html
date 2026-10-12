@@ -164,6 +164,27 @@ token_ttl_secs = 3153600000</code></pre>
             paired device use <strong>… → Invite Device…</strong> in the app for a
             one-time code.</p>
         </details>
+        <details>
+          <summary>Pair a device that should only reach some apps</summary>
+          <p>By default a pairing link grants every app the server can see. To share
+            only some, list the ports:</p>
+          <div class="copy">
+            <button class="copybtn" type="button" data-copy hidden>Copy</button>
+<pre><code>raemote pair --ports 8096,3000</code></pre>
+          </div>
+          <p>That device's app list shows only those apps, and opening anything else
+            is refused. You can narrow or widen a paired device later — it takes
+            effect immediately:</p>
+          <div class="copy">
+            <button class="copybtn" type="button" data-copy hidden>Copy</button>
+<pre><code>raemote devices access &lt;id&gt; --ports 8096
+raemote devices access &lt;id&gt; --all</code></pre>
+          </div>
+          <p>Invitations follow the same rule: a limited device sharing
+            <strong>… → Invite Device…</strong> can pass on everything it has or a
+            narrower selection — never more than its own grant. Access is per port,
+            so two apps behind the same port are allowed or refused together.</p>
+        </details>
       </div>
 
       <div class="step-block" id="use">
@@ -212,9 +233,10 @@ raemote connect                              # reopen the last server</code></pr
               <tr><td><code>raemote discover</code></td><td>scan for apps right now (add <code>--verbose</code> to see what was skipped and why)</td></tr>
               <tr><td><code>raemote apps list</code></td><td>the merged app list, with where each entry came from</td></tr>
               <tr><td><code>raemote apps hide &lt;name&gt;</code></td><td>drop a false positive (<code>unhide</code> restores it)</td></tr>
-              <tr><td><code>raemote devices list</code></td><td>paired devices, with names and node ids</td></tr>
+              <tr><td><code>raemote devices list</code></td><td>paired devices — names, node ids, and what each can reach</td></tr>
               <tr><td><code>raemote devices rename &lt;id&gt; "Living Room"</code></td><td>give a device a readable name</td></tr>
               <tr><td><code>raemote devices revoke &lt;id&gt;</code></td><td>cut a device off immediately</td></tr>
+              <tr><td><code>raemote devices access &lt;id&gt; --ports 8096</code></td><td>limit a device to specific apps (<code>--all</code> restores everything)</td></tr>
               <tr><td><code>raemote config set name "Mac mini"</code></td><td>rename the server as paired devices see it</td></tr>
               <tr><td><code>raemote logs -n 50</code></td><td>recent activity (<code>--follow</code> to stream)</td></tr>
               <tr><td><code>raemote restart</code></td><td>restart the service after a config change</td></tr>

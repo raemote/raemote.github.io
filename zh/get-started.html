@@ -157,6 +157,24 @@ token_ttl_secs = 3153600000</code></pre>
             拿到它的人就能配对。也可以完全绕开服务端——在已配对的设备上用
             <strong>… → 邀请设备…</strong> 生成一次性邀请码。</p>
         </details>
+        <details>
+          <summary>只让某台设备访问部分应用</summary>
+          <p>默认情况下，配对链接授予服务端能看到的全部应用。只想给一部分时，把端口列出来：</p>
+          <div class="copy">
+            <button class="copybtn" type="button" data-copy hidden>复制</button>
+<pre><code>raemote pair --ports 8096,3000</code></pre>
+          </div>
+          <p>这台设备的应用列表里只会出现这些应用，打开别的会被拒绝。之后也可以收紧
+            或放宽某台已配对设备的权限，改动立即生效：</p>
+          <div class="copy">
+            <button class="copybtn" type="button" data-copy hidden>复制</button>
+<pre><code>raemote devices access &lt;id&gt; --ports 8096
+raemote devices access &lt;id&gt; --all</code></pre>
+          </div>
+          <p>邀请遵守同样的规则：权限受限的设备用 <strong>… → 邀请设备…</strong>
+            时，可以交出它拥有的全部权限，或者更小的一部分——绝不会超出它自己的范围。
+            权限按端口划分，所以同一个端口后面的应用总是同进同退。</p>
+        </details>
       </div>
 
       <div class="step-block" id="use">
@@ -203,9 +221,10 @@ raemote connect                              # 打开上次用的服务端</code
               <tr><td><code>raemote discover</code></td><td>立刻重新扫描（加 <code>--verbose</code> 看每个被跳过的端口和原因）</td></tr>
               <tr><td><code>raemote apps list</code></td><td>合并后的应用列表，含每条记录的来源</td></tr>
               <tr><td><code>raemote apps hide &lt;名字&gt;</code></td><td>隐藏误识别的应用（<code>unhide</code> 恢复）</td></tr>
-              <tr><td><code>raemote devices list</code></td><td>已配对设备，含名称和节点 ID</td></tr>
+              <tr><td><code>raemote devices list</code></td><td>已配对设备，含名称、节点 ID 和各自的访问权限</td></tr>
               <tr><td><code>raemote devices rename &lt;id&gt; "客厅"</code></td><td>给设备起个可读的名字</td></tr>
               <tr><td><code>raemote devices revoke &lt;id&gt;</code></td><td>立刻断开某台设备</td></tr>
+              <tr><td><code>raemote devices access &lt;id&gt; --ports 8096</code></td><td>把该设备限制在指定应用（<code>--all</code> 恢复全部）</td></tr>
               <tr><td><code>raemote config set name "Mac mini"</code></td><td>改服务端在已配对设备上显示的名字</td></tr>
               <tr><td><code>raemote logs -n 50</code></td><td>最近日志（<code>--follow</code> 持续输出）</td></tr>
               <tr><td><code>raemote restart</code></td><td>改完配置后重启服务</td></tr>

@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Raemote — 让手机也能用你电脑上的自托管应用</title>
-<meta name="description" content="Raemote 自动发现你电脑上正在运行的自托管应用，并通过端到端加密的连接把它们带到手机上。装一次、扫一次码，无需账号、无需 VPN、无需端口转发。">
+<meta name="description" content="Raemote 自动发现你电脑上正在运行的自托管应用，并通过端到端加密的连接把它们带到手机上——或者用 raemote connect，在任何电脑的浏览器里直接打开。装一次、扫一次码，无需账号、无需 VPN、无需端口转发。">
 <link rel="canonical" href="https://raemote.github.io/zh/">
 <link rel="icon" href="../assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Raemote">
 <meta property="og:title" content="Raemote — 让手机也能用你电脑上的自托管应用">
-<meta property="og:description" content="装一次、扫一次码，你私有的应用就出现在手机上。端到端加密，无需账号，无需端口转发。">
+<meta property="og:description" content="装一次、扫一次码，你私有的应用就出现在手机上——或者用 raemote connect，在浏览器里打开同样的应用。端到端加密，无需账号，无需端口转发。">
 <meta property="og:url" content="https://raemote.github.io/zh/">
 <meta property="og:image" content="https://raemote.github.io/assets/og.png">
 <meta name="theme-color" content="#197295" media="(prefers-color-scheme: light)">
@@ -43,8 +43,9 @@
     <div class="wrap">
       <img class="mark" src="../assets/logo.svg" alt="" width="84" height="84">
       <h1>你本来就在跑的应用，现在手机上也能用。</h1>
-      <p class="lede">在电脑上装好 Raemote，用手机扫一次二维码。
-        你本来就在跑的那些东西——影音、控制台、笔记、项目——都到了手机上：
+      <p class="lede">在电脑上装好 Raemote，用手机扫一次二维码——或者把链接贴给
+        <code>raemote connect</code>，直接在浏览器里打开同样的应用。无论哪种方式，
+        你本来就在跑的那些东西——影音、控制台、笔记、项目——都在眼前：
         端到端加密，而且不会把任何东西暴露到公网上。</p>
       <p class="muted">如果你以前为了在外面访问自己的东西，专门搭过隧道、VPN 或者反向代理——
         这条路可以短很多。</p>
@@ -53,6 +54,7 @@
         <a class="btn badge" href="https://testflight.apple.com/join/3AQeWyUR" rel="noopener">
           <img src="../assets/testflight_badge.svg" alt="可通过 TestFlight 获取" height="42">
         </a>
+        <a class="btn" href="#laptop">用浏览器打开</a>
         <a class="btn" href="https://github.com/raemote/raemote_cli" rel="noopener">在 GitHub 上 Star</a>
       </div>
       <ul class="pill-row">
@@ -76,7 +78,8 @@
         </li>
         <li>
           <h3>扫一下二维码</h3>
-          <p>运行 <code>raemote pair</code>，用 Raemote App 扫一下。这个链接是短期的，在过期之前可以配对不止一台设备。</p>
+          <p>运行 <code>raemote pair</code>，用 Raemote App 扫一下——或者把链接贴给电脑上的
+            <code>raemote connect</code>。这个链接是短期的，在过期之前可以配对不止一台设备。</p>
         </li>
         <li>
           <h3>打开应用</h3>
@@ -131,11 +134,11 @@
           <p class="muted">一台设备一个身份 · 随时撤销 · 不共用账号</p>
         </li>
         <li class="card">
-          <span class="tag">笔记本</span>
-          <h3>不用手机也行</h3>
-          <p><code>raemote connect</code> 会在本机浏览器里提供同样的应用列表——
-            调试很方便，手机在充电时也能用。</p>
-          <p class="muted">一条命令，接着就是浏览器</p>
+          <span class="tag">浏览器</span>
+          <h3>或者直接用浏览器</h3>
+          <p><code>raemote connect</code> 把一台电脑当普通设备配对，在浏览器里提供
+            同样的应用列表——走的是手机 App 同一条加密隧道。</p>
+          <p class="muted">一条命令 · 登录状态保留 · 像其它设备一样可撤销</p>
         </li>
       </ul>
     </div>
@@ -197,6 +200,13 @@
           <p>打开的应用会作为后台标签页继续运行，切换是瞬时的，页面也保持在你离开时的样子。</p>
         </li>
         <li class="card">
+          <span class="tag">浏览器端</span>
+          <h3>同样的应用，浏览器里也能开</h3>
+          <p><code>raemote connect</code> 会像普通设备一样配对一台电脑，把你的应用放进
+            桌面浏览器——同一条加密隧道，每个应用自己的源，登录状态照旧，多个应用可以
+            同时在标签页里打开。</p>
+        </li>
+        <li class="card">
           <span class="tag">连接</span>
           <h3>端到端加密，能直连就直连</h3>
           <p>网络允许时，手机直接和你的电脑通信；不允许时，由公共中继转发——它转发的字节自己读不懂。</p>
@@ -210,11 +220,6 @@
           <span class="tag">管控</span>
           <h3>谁进来由你决定</h3>
           <p>查看已配对设备、给它们起名字、随时撤销，也可以在 App 或命令行里用一次性邀请码添加新设备。每台配对设备可以访问你的全部应用，或者只访问你允许的那些。</p>
-        </li>
-        <li class="card">
-          <span class="tag">笔记本</span>
-          <h3>没有手机？用浏览器</h3>
-          <p><code>raemote connect</code> 会给这台电脑配对，并在 <code>127.0.0.1</code> 上提供同样的应用列表，走的是同一条加密隧道。调试和笔记本场景都很顺手。</p>
         </li>
         <li class="card">
           <span class="tag">运维</span>
@@ -234,7 +239,9 @@
     <div class="wrap">
       <p class="eyebrow">工作原理</p>
       <h2>两个组件，一条私有连接</h2>
-      <p class="lede">一个叫 <code>raemoted</code> 的小型服务端跑在放着这些应用的电脑上；手机上的 Raemote App 展示它发现了什么，并把它们打开。中间没有账号，也没有云服务。</p>
+      <p class="lede">一个叫 <code>raemoted</code> 的小型服务端跑在放着这些应用的电脑上；
+        客户端展示它发现了什么，并把它们打开——手机上的 Raemote App，或者浏览器里的
+        <code>raemote connect</code>。中间没有账号，也没有云服务。</p>
       <figure>
         <img src="../assets/diagram-how.svg" alt="示意图：手机与电脑上的 raemoted 之间建立端到端加密连接——能直连就直连，否则经过读不懂内容的公共中继；raemoted 再把请求反向代理到本机的各个网页应用。" width="960" height="400" loading="lazy">
         <figcaption>网络允许就直连，不允许就走中继。</figcaption>
@@ -248,9 +255,9 @@
         （<code>/_hub/catalog</code>、<code>/_hub/info</code>、
         <code>/_hub/devices</code>、<code>/_hub/discover</code>），并把
         <code>/app/&lt;名字&gt;/…</code> 反向代理到应用真实地址。</p>
-        <p>在手机这一侧，每个应用有自己的本地回环源和一个每次启动都会变的密钥，
-        手机上别的 App 也碰不到它。请求全程流式转发——请求体、上传、服务端推送
-        和 WebSocket 都原样通过。</p>
+        <p>在客户端这一侧，每个应用有自己的本地回环源，设备上的其它程序碰不到它——
+        iOS 上由每次启动都会变的密钥守护，浏览器客户端则校验请求的 Host。请求全程
+        流式转发——请求体、上传、服务端推送和 WebSocket 都原样通过。</p>
       </details>
     </div>
   </section>
@@ -259,7 +266,8 @@
     <div class="wrap">
       <p class="eyebrow">信任模型</p>
       <h2>只有你配对过的设备能进来</h2>
-      <p class="lede">配对只做一次。之后手机凭它的加密身份被识别——没有账号要登录，也没有密钥要保管。</p>
+      <p class="lede">配对只做一次。之后每台设备——你的手机、跑着 <code>raemote connect</code>
+        的电脑、朋友的手机——都凭各自的加密身份被识别：没有账号要登录，也没有密钥要保管。</p>
       <figure>
         <img src="../assets/diagram-trust.svg" alt="示意图：配对二维码里包含服务端身份和一个短期 token；手机出示一次 token，服务端把手机身份记录到磁盘；此后凭身份识别，随时可以撤销。" width="960" height="250" loading="lazy">
         <figcaption>二维码只是一次性的引导，不是长期密钥。</figcaption>
@@ -277,16 +285,19 @@
 
   <section id="laptop">
     <div class="wrap">
-      <p class="eyebrow">没有手机也能试</p>
-      <h2>在笔记本浏览器里逛一逛</h2>
-      <p>同一条隧道，从这台电脑上的浏览器访问：</p>
+      <p class="eyebrow">另一个客户端</p>
+      <h2>浏览器里的 Raemote：<code>raemote connect</code></h2>
+      <p><code>raemote connect</code> 是一个完整的客户端：用和 App 完全相同的链接、
+        完全相同的二维码、完全相同的加密隧道给电脑配对，再把你的应用放进桌面浏览器：</p>
       <div class="copy">
         <button class="copybtn" type="button" data-copy hidden>复制</button>
 <pre><code>raemote connect              # 打开上次用的服务端
 raemote connect '&lt;来自 raemote pair 的链接&gt;'</code></pre>
       </div>
       <p class="muted">应用列表跑在 <code>127.0.0.1:7788</code>，每个应用还会分到一个
-        自己的回环端口，所以应用的表现和在服务端完全一致。</p>
+        自己的回环端口，所以 URL、Cookie 和登录状态与在服务端完全一致。配对后的电脑
+        会出现在 <code>raemote devices list</code> 里，和其它设备一样——可以起名字、
+        用 <code>--ports</code> 限制、随时撤销。</p>
     </div>
   </section>
 
@@ -356,10 +367,11 @@ raemote connect '&lt;来自 raemote pair 的链接&gt;'</code></pre>
         </ul>
       </div>
       <div>
-        <h3>手机端</h3>
+        <h3>客户端</h3>
         <ul>
           <li><a href="https://github.com/raemote/raemote_connector_ios" rel="noopener">iOS 客户端（GitHub）</a></li>
           <li><a href="https://gitee.com/pppkin/raemote_connector_ios" rel="noopener">iOS 客户端（Gitee）</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli#connect" rel="noopener">浏览器客户端（raemote connect）</a></li>
           <li><a href="https://crates.io/crates/raemote" rel="noopener">crate：raemote</a></li>
         </ul>
       </div>

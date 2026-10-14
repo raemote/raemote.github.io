@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Raemote — your self-hosted apps on your phone, no VPN</title>
-<meta name="description" content="Raemote finds the web apps running on your computer and makes them reachable from your phone over an end-to-end encrypted connection. One install, one QR scan. No account, no VPN, no port forwarding.">
+<meta name="description" content="Raemote finds the web apps running on your computer and makes them reachable from your phone — or, with raemote connect, from a browser on any computer — over an end-to-end encrypted connection. One install, one QR scan. No account, no VPN, no port forwarding.">
 <link rel="canonical" href="https://raemote.github.io/">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Raemote">
 <meta property="og:title" content="Raemote — your self-hosted apps on your phone, no VPN">
-<meta property="og:description" content="Install Raemote on your computer, scan a QR code with your phone, and your private apps are on your phone. End-to-end encrypted, no account, no port forwarding.">
+<meta property="og:description" content="Install Raemote on your computer, then scan a QR code with your phone — or pair raemote connect and use the same apps in a browser. End-to-end encrypted, no account, no port forwarding.">
 <meta property="og:url" content="https://raemote.github.io/">
 <meta property="og:image" content="https://raemote.github.io/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -44,9 +44,10 @@
     <div class="wrap">
       <img class="mark" src="assets/logo.svg" alt="" width="84" height="84">
       <h1>The apps you already run, on your phone.</h1>
-      <p class="lede">Install Raemote on your computer. Scan a QR code with your phone.
-        The apps you already run — your media, your dashboards, your notes, your
-        projects — are right there on your phone, end-to-end encrypted, with nothing
+      <p class="lede">Install Raemote on your computer. Scan a QR code with your phone —
+        or pair <code>raemote connect</code> and open the same apps in a browser.
+        Either way, the apps you already run — your media, your dashboards, your
+        notes, your projects — are right there, end-to-end encrypted, with nothing
         exposed to the internet.</p>
       <p class="muted">If you've ever set up a tunnel, a VPN or a reverse proxy just to
         reach your own stuff from outside — this is the short way to do it.</p>
@@ -55,6 +56,7 @@
         <a class="btn badge" href="https://testflight.apple.com/join/3AQeWyUR" rel="noopener">
           <img src="assets/testflight_badge.svg" alt="Available on TestFlight" height="42">
         </a>
+        <a class="btn" href="#laptop">Use it in a browser</a>
         <a class="btn" href="https://github.com/raemote/raemote_cli" rel="noopener">Star on GitHub</a>
       </div>
       <ul class="pill-row">
@@ -79,7 +81,8 @@
         </li>
         <li>
           <h3>Scan the QR code</h3>
-          <p>Run <code>raemote pair</code> and scan it with the Raemote app. The link is
+          <p>Run <code>raemote pair</code> and scan it with the Raemote app — or paste the
+            link into <code>raemote connect</code> on a computer. The link is
             short-lived and can pair more than one device until it expires.</p>
         </li>
         <li>
@@ -140,11 +143,11 @@
           <p class="muted">One device each · revoke any time · no shared logins</p>
         </li>
         <li class="card">
-          <span class="tag">Laptop</span>
-          <h3>Or from a browser, no phone</h3>
-          <p><code>raemote connect</code> serves the same list on your own laptop — handy
-            for testing, or if the phone is charging.</p>
-          <p class="muted">One command, then your browser</p>
+          <span class="tag">Browser</span>
+          <h3>Or from a browser</h3>
+          <p><code>raemote connect</code> pairs a computer as a regular device and serves
+            the same apps in your browser — the same tunnel the phone app uses.</p>
+          <p class="muted">One command · logins kept · revoke it like any device</p>
         </li>
       </ul>
     </div>
@@ -211,6 +214,14 @@
             instant and keeps the page exactly where you left it.</p>
         </li>
         <li class="card">
+          <span class="tag">The browser client</span>
+          <h3>The same apps, in a browser</h3>
+          <p><code>raemote connect</code> pairs a computer like any other device and
+            serves your apps in a desktop browser over the same encrypted tunnel —
+            every app on its own origin, logins and all. Open several at once as
+            browser tabs.</p>
+        </li>
+        <li class="card">
           <span class="tag">Connection</span>
           <h3>Encrypted, direct when possible</h3>
           <p>Your phone talks straight to your computer when the network allows it.
@@ -231,13 +242,6 @@
             instantly, and invite a new device with a one-time code — from the app
             or the command line. Every paired device can reach all your apps, or
             only the ones you allow.</p>
-        </li>
-        <li class="card">
-          <span class="tag">Laptop</span>
-          <h3>No phone? Use a browser</h3>
-          <p><code>raemote connect</code> pairs this machine and serves the same app
-            list on <code>127.0.0.1</code>, proxied over the same encrypted tunnel.
-            Handy for testing and for laptops.</p>
         </li>
         <li class="card">
           <span class="tag">Operate</span>
@@ -262,8 +266,9 @@
       <p class="eyebrow">How it works</p>
       <h2>Two pieces, one private connection</h2>
       <p class="lede">A small server, <code>raemoted</code>, runs on the computer that
-        holds your apps. The Raemote app on your phone shows what it found and opens
-        them. There is no account and no cloud service in the middle.</p>
+        holds your apps. A client shows what it found and opens them — the Raemote
+        app on your phone, or <code>raemote connect</code> in a browser. There is no
+        account and no cloud service in the middle.</p>
       <figure>
         <img src="assets/diagram-how.svg" alt="Diagram: your phone holds an end-to-end encrypted connection to raemoted on your computer — directly, or through a public relay that cannot read the traffic — and raemoted reverse-proxies each app to the local web apps on that machine." width="960" height="400" loading="lazy">
         <figcaption>Direct where the network allows it; relayed where it doesn't.</figcaption>
@@ -279,8 +284,9 @@
           the small HTTP API (<code>/_hub/catalog</code>, <code>/_hub/info</code>,
           <code>/_hub/devices</code>, <code>/_hub/discover</code>) and reverse-proxies
           <code>/app/&lt;name&gt;/…</code> to the app's real address.</p>
-        <p>On the app's side, a loopback proxy gives each app its own origin and a
-          per-launch secret, so nothing else on the phone can reach it. Requests are
+        <p>On the client's side, a loopback proxy gives each app its own origin, so
+          nothing else on the device can reach it — on iOS it is gated by a
+          per-launch secret, in the browser client by a host check. Requests are
           streamed — bodies, uploads, server-sent events and WebSockets all pass
           through untouched.</p>
       </details>
@@ -291,8 +297,9 @@
     <div class="wrap">
       <p class="eyebrow">Trust</p>
       <h2>Only devices you paired get in</h2>
-      <p class="lede">Pairing happens once. After that, your phone is recognised by
-        its cryptographic identity — there is nothing to log in to and no token to
+      <p class="lede">Pairing happens once. After that, every device — your phone, a
+        laptop running <code>raemote connect</code>, a friend's phone — is recognised
+        by its cryptographic identity: there is nothing to log in to and no token to
         keep safe.</p>
       <figure>
         <img src="assets/diagram-trust.svg" alt="Diagram: the pairing QR carries the server's identity and a short-lived token; the phone presents the token once, the server stores the phone's identity on disk, and from then on the phone is recognised by identity alone and can be revoked at any time." width="960" height="250" loading="lazy">
@@ -313,17 +320,21 @@
 
   <section id="laptop">
     <div class="wrap">
-      <p class="eyebrow">Try it without a phone</p>
-      <h2>Browse your apps from a laptop</h2>
-      <p>The same tunnel, from a browser on the machine itself:</p>
+      <p class="eyebrow">The other client</p>
+      <h2>Raemote in a browser: <code>raemote connect</code></h2>
+      <p><code>raemote connect</code> is a full client in its own right: it pairs a
+        computer with the very same link and QR code the app uses, over the very
+        same encrypted tunnel, and serves your apps in a desktop browser:</p>
       <div class="copy">
         <button class="copybtn" type="button" data-copy hidden>Copy</button>
 <pre><code>raemote connect              # reopen the last server
 raemote connect '&lt;link from raemote pair&gt;'</code></pre>
       </div>
-      <p class="muted">It serves the app list on <code>127.0.0.1:7788</code> and gives
-        every app its own loopback port, so apps behave exactly as they do on the
-        server.</p>
+      <p class="muted">The app list is served on <code>127.0.0.1:7788</code> and every app
+        gets its own loopback port, so URLs, cookies and logins behave exactly as they
+        do on the server. The paired computer appears in
+        <code>raemote devices list</code> like any other device — name it, restrict it
+        with <code>--ports</code>, revoke it.</p>
     </div>
   </section>
 
@@ -396,10 +407,11 @@ raemote connect '&lt;link from raemote pair&gt;'</code></pre>
         </ul>
       </div>
       <div>
-        <h3>Phone app</h3>
+        <h3>Clients</h3>
         <ul>
           <li><a href="https://github.com/raemote/raemote_connector_ios" rel="noopener">iOS client (GitHub)</a></li>
           <li><a href="https://gitee.com/pppkin/raemote_connector_ios" rel="noopener">iOS client (Gitee)</a></li>
+          <li><a href="https://github.com/raemote/raemote_cli#connect" rel="noopener">Browser client (raemote connect)</a></li>
           <li><a href="https://crates.io/crates/raemote" rel="noopener">crate: raemote</a></li>
         </ul>
       </div>

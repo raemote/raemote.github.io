@@ -4,8 +4,9 @@ The website for [Raemote](https://github.com/raemote/raemote_cli) — served at
 **<https://raemote.github.io>**.
 
 - What it is: your self-hosted apps (Jellyfin, Home Assistant, dashboards, dev
-  servers) on your phone, over an end-to-end encrypted connection. One install,
-  one QR scan, no account, no VPN, no port forwarding.
+  servers) on your phone — or in any browser, with `raemote connect` — over an
+  end-to-end encrypted connection. One install, one QR scan, no account, no VPN,
+  no port forwarding.
 - A guide in English and Chinese: [`get-started.html`](get-started.html),
   [`zh/`](zh/).
 
@@ -42,7 +43,9 @@ The site describes what the software actually does today. When you change the
 product, update the pages in the same commit:
 
 - install one-liner and the Gitee mirror (`raemote_cli/install.sh`)
-- pairing, device management, discovery (`raemote_cli/README.md`)
+- pairing, device management, discovery, and every `raemote connect` claim
+  (`raemote_cli/README.md` — the `## Connect` section is the source of truth
+  for the browser client's ports, flags and behaviour)
 - the iOS feature list and the Safari "Not Secure Connection Warning" note
   (`raemote_ios/Raemote Connector/README.md`)
 - the HTTPS-only limitation in the "What Raemote does not do" section

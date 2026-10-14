@@ -43,7 +43,8 @@
       <p class="eyebrow">Quick start</p>
       <h1>Get Raemote running</h1>
       <p class="lede">Five minutes: install the server on the computer that runs your
-        apps, install the app on your phone, scan one QR code.</p>
+        apps, install the app on your phone (or pair a browser instead — step 6),
+        scan one QR code.</p>
 
       <div class="toc">
         <h2>On this page</h2>
@@ -53,7 +54,7 @@
           <li><a href="#app">Install the phone app</a></li>
           <li><a href="#pair">Pair your phone</a></li>
           <li><a href="#use">Use it</a></li>
-          <li><a href="#laptop">No phone handy</a></li>
+          <li><a href="#laptop">Use it in a browser</a></li>
           <li><a href="#operate">Day-to-day commands</a></li>
           <li><a href="#trouble">If something looks wrong</a></li>
           <li><a href="#remove">Remove it</a></li>
@@ -129,6 +130,9 @@
         <p>Install <strong>Raemote</strong> from TestFlight on your iPhone
           (iOS&nbsp;27+), then open it. There is no account to create and nothing to
           sign up for.</p>
+        <p class="muted">A browser is an equal option: <code>raemote connect</code>
+          pairs a computer and serves these same apps — <a href="#laptop">step&nbsp;6</a>.
+          One link can pair both.</p>
         <div class="note">
           <strong>First launch shows a Safari “Not Secure Connection” page?</strong>
           That is Safari's own warning for the plain-HTTP loopback address Raemote
@@ -149,6 +153,9 @@
         <p>It prints a <code>raemote://</code> link and a QR code. In the app, tap
           <strong>+</strong> and scan it — or paste the link with
           <strong>Manual Setup</strong>. You do this once per device.</p>
+        <p>The same link pairs a computer: run
+          <code>raemote connect '&lt;link from raemote pair&gt;'</code> and it becomes
+          another paired device (<a href="#laptop">step&nbsp;6</a>).</p>
         <p>The link is short-lived (five minutes by default) and can pair more than one
           device until it expires. Print a fresh one any time with
           <code>raemote pair</code>.</p>
@@ -209,17 +216,20 @@ raemote apps list</code></pre>
       </div>
 
       <div class="step-block" id="laptop">
-        <h2><span class="n">6</span> No phone handy</h2>
-        <p>Pair this machine and browse the same apps from your desktop browser:</p>
+        <h2><span class="n">6</span> Use it in a browser</h2>
+        <p><code>raemote connect</code> is a full client, exactly like the phone app:
+          pair this computer with the same link and serve your apps in a browser:</p>
         <div class="copy">
           <button class="copybtn" type="button" data-copy hidden>Copy</button>
 <pre><code>raemote connect '&lt;link from raemote pair&gt;'   # pair and open
 raemote connect                              # reopen the last server</code></pre>
         </div>
         <p>The app list is served on <code>127.0.0.1:7788</code> (move it with
-          <code>--port</code>), and every app gets its own loopback port so its URLs
-          and cookies behave exactly as they do on the server. <code>--no-open</code>
-          skips launching the browser.</p>
+          <code>--port</code>), and every app gets its own loopback port so its URLs,
+          cookies and logins behave exactly as they do on the server. The paired
+          computer appears in <code>raemote devices list</code> like any phone —
+          name it, restrict it, revoke it. <code>--no-open</code> skips launching
+          the browser.</p>
       </div>
 
       <div class="step-block" id="operate">

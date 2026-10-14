@@ -42,7 +42,7 @@
     <div class="wrap wrap-narrow">
       <p class="eyebrow">快速开始</p>
       <h1>把 Raemote 跑起来</h1>
-      <p class="lede">五分钟：在跑应用的电脑上装好服务端，在手机上装好 App，扫一次二维码完成配对。</p>
+      <p class="lede">五分钟：在跑应用的电脑上装好服务端，在手机上装好 App（或者改成配对浏览器——见第 6 步），扫一次二维码完成配对。</p>
 
       <div class="toc">
         <h2>本页目录</h2>
@@ -52,7 +52,7 @@
           <li><a href="#app">安装手机 App</a></li>
           <li><a href="#pair">配对手机</a></li>
           <li><a href="#use">开始使用</a></li>
-          <li><a href="#laptop">没有手机</a></li>
+          <li><a href="#laptop">用浏览器使用</a></li>
           <li><a href="#operate">常用命令</a></li>
           <li><a href="#trouble">出问题了</a></li>
           <li><a href="#remove">卸载</a></li>
@@ -126,6 +126,8 @@
         </a></p>
         <p>在 iPhone 上从 TestFlight 安装 <strong>Raemote</strong>（iOS&nbsp;27+），
           然后打开。不用注册账号，也不用填任何信息。</p>
+        <p class="muted">浏览器是同等的选择：<code>raemote connect</code> 会给一台电脑
+          配对、提供同样的应用——<a href="#laptop">第 6 步</a>。同一个链接可以两者都配对。</p>
         <div class="note">
           <strong>第一次打开出现 Safari 的「非安全连接」提示页？</strong>
           那是 Safari 对 Raemote 在 App 内部使用的 HTTP 回环地址发出的提示——
@@ -144,6 +146,9 @@
         <p>它会打印一个 <code>raemote://</code> 链接和二维码。在 App 里点
           <strong>+</strong> 扫描，或者用<strong>手动添加</strong>粘贴链接。
           每台设备配对一次就够了。</p>
+        <p>同一个链接也能配对电脑：运行
+          <code>raemote connect '&lt;来自 raemote pair 的链接&gt;'</code>，
+          它就会成为另一台配对设备（<a href="#laptop">第 6 步</a>）。</p>
         <p>这个链接是短期的（默认五分钟），在过期前可以配对多台设备。随时运行
           <code>raemote pair</code> 就能打印一个新的。</p>
         <details>
@@ -198,16 +203,18 @@ raemote apps list</code></pre>
       </div>
 
       <div class="step-block" id="laptop">
-        <h2><span class="n">6</span> 没有手机</h2>
-        <p>给这台电脑配对，直接在桌面浏览器里访问同样的应用：</p>
+        <h2><span class="n">6</span> 用浏览器使用</h2>
+        <p><code>raemote connect</code> 是一个完整的客户端，和手机 App 完全一样：
+          用同一个链接给这台电脑配对，然后在浏览器里提供你的应用：</p>
         <div class="copy">
           <button class="copybtn" type="button" data-copy hidden>复制</button>
 <pre><code>raemote connect '&lt;来自 raemote pair 的链接&gt;'   # 配对并打开
 raemote connect                              # 打开上次用的服务端</code></pre>
         </div>
         <p>应用列表跑在 <code>127.0.0.1:7788</code>（用 <code>--port</code> 改端口），
-          每个应用还会分到自己的回环端口，所以 URL 和 Cookie 的表现与在服务端
-          一致。加 <code>--no-open</code> 可以不自动打开浏览器。</p>
+          每个应用还会分到自己的回环端口，所以 URL、Cookie 和登录状态与在服务端
+          一致。配对后的电脑会出现在 <code>raemote devices list</code> 里，和手机
+          一样——可以起名字、限制、撤销。加 <code>--no-open</code> 可以不自动打开浏览器。</p>
       </div>
 
       <div class="step-block" id="operate">

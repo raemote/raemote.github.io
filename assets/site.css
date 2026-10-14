@@ -222,7 +222,7 @@ nav.links a:hover { color: var(--ink); text-decoration: underline; }
   color: #fff;
 }
 .btn.primary:hover { filter: brightness(1.06); color: #fff; }
-.btn img { display: block; height: 42px; width: auto; }
+.btn img { display: block; height: 62px; width: auto; }
 /* The TestFlight badge is a finished graphic — don't frame it. */
 .btn.badge { border: 0; box-shadow: none; background: none; padding: 0; border-radius: 0; }
 .btn.badge:hover { border-color: transparent; }
